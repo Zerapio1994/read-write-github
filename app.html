@@ -1,9 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang= "en">
 <head>
+
+	{{>head}}
 	<title>MOH</title>
 </head>
+
+
 <body>
-	<p id="dailyMessage">Hello Siddarth</p>
+
+	{{>bsnavbar}}
+
+	<div class= "container">
+	{{{body}}}
+	</div>
+
+</body>
+</html>
+
+
+ 
+<body>
+ 
+<!-- References a Handlebars partial in views/partials/bsnavbar.handlebars -->
+{{>bsnavbar}}
+ 
+<!-- The HTML for each view goes here -->
+<div class="container">
+{{{body}}}
+</div>
+ 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>
