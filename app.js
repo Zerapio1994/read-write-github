@@ -68,6 +68,14 @@ app.get('/',function(req, res, next){
 		return res.render('index', {title: 'welcome', body: stringToReplace, sha: sha})
 	})
 })
+/*app.get('/about', function(req, res){
+  // Point at the about.handlebars view
+  // Allow for the test specified in tests-about.js
+  res.render('about');
+});
+
+*/
+
 
 app.post('/submit', function(req, res, next){
 	var message = req.body.message
