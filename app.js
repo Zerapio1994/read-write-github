@@ -58,6 +58,10 @@ github.authenticate({
     password: github_password
 });
 
+app.get('/about', function(req, res){
+  res.render('about');
+});
+
 var credentials = require('./credentials.js');
 app.use(require('cookie-parser')(credentials.cookieSecret));
 
@@ -87,6 +91,28 @@ app.post('/process', function(req, res){
   res.redirect(303,'/thankyou');
 });
 
+app.get('/file-upload', function(req, res){
+  var now = new Date();
+  res.render('file-upload',{
+    year: now.getFullYear(),
+    month: now.getMonth() });
+  });
+
+app.post('/file-upload/:year/:month',
+  function(req, res){
+ 
+    // Parse a file that was uploaded
+    var form = new formidable.IncomingForm();
+    form.parse(req, function(err, fields, file){
+      if(err)
+        return res.redirect(303, '/error');
+      console.log('Received File');
+ 
+      // Output file information
+      console.log(file);
+      res.redirect( 303, '/thankyou');
+  });
+});
 
 
 app.get('/',function(req, res, next){
@@ -109,11 +135,7 @@ app.get('/',function(req, res, next){
 })
 
 
-app.get('/about', function(req, res){
-  // Point at the about.handlebars view
-  // Allow for the test specified in tests-about.js
-  res.render('about');
-});
+
 
 
 
