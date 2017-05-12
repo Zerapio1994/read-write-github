@@ -36,6 +36,20 @@ var content;
 var buffer;
 var stringToReplace;
 
+app.get('/about', function(req, res){
+  // Point at the about.handlebars view
+  // Allow for the test specified in tests-about.js
+  res.render('about');
+});
+ 
+// Link to contact view
+app.get('/contact', function(req, res){
+ 
+  // CSRF tokens are generated in cookie and form data and
+  // then they are verified when the user posts
+  res.render('contact', { csrf: 'CSRF token here' });
+});
+
 var github = new GitHubApi({
     // optional
     debug: true,
