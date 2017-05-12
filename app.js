@@ -80,7 +80,7 @@ app.post('/process', function(req, res){
   console.log('CSRF token : ' + req.body._csrf);
   console.log('Email : ' + req.body.email);
   console.log('Question : ' + req.body.ques);
-  res.render('/thankyou');
+  res.redirect(303,'/thankyou');
 });
 
 
