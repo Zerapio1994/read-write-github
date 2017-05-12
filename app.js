@@ -75,12 +75,16 @@ app.get('/contact', function(req, res){
   res.render('contact', { csrf: 'CSRF token here' });
 });
 
+app.get('/thankyou', function(req, res){
+  res.render('thankyou');
+});
+
 app.post('/process', function(req, res){
   console.log('Form : ' + req.query.form);
   console.log('CSRF token : ' + req.body._csrf);
   console.log('Email : ' + req.body.email);
   console.log('Question : ' + req.body.ques);
-  res.redirect(303,'/instructions');
+  res.redirect(303,'/thankyou');
 });
 
 
