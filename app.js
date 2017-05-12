@@ -50,6 +50,12 @@ app.get('/contact', function(req, res){
   res.render('contact', { csrf: 'CSRF token here' });
 });
 
+app.get('/instructions', function(req, res){
+  // Point at the about.handlebars view
+  // Allow for the test specified in tests-about.js
+  res.render('instructions');
+});
+
 var github = new GitHubApi({
     // optional
     debug: true,
