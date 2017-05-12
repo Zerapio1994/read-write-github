@@ -37,17 +37,7 @@ var content;
 var buffer;
 var stringToReplace;
 
-app.get('/contact', function(req, res){
-  res.render('contact', { csrf: 'CSRF token here' });
-});
 
-app.post('/process', function(req, res){
-  console.log('Form : ' + req.query.form);
-  console.log('CSRF token : ' + req.body._csrf);
-  console.log('Email : ' + req.body.email);
-  console.log('Question : ' + req.body.ques);
-  res.redirect(303,'/thankyou');
-});
 
 
 var github = new GitHubApi({
@@ -81,7 +71,17 @@ app.get('/instructions', function(req, res){
   res.render('instructions');
 });
 
+app.get('/contact', function(req, res){
+  res.render('contact', { csrf: 'CSRF token here' });
+});
 
+app.post('/process', function(req, res){
+  console.log('Form : ' + req.query.form);
+  console.log('CSRF token : ' + req.body._csrf);
+  console.log('Email : ' + req.body.email);
+  console.log('Question : ' + req.body.ques);
+  res.redirect(303,'/thankyou');
+});
 
 
 
