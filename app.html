@@ -2,23 +2,22 @@
 <html lang= "en">
 <head>
 
-	{{>head.hbs}}
+	{{>head}}
 	<title>MOH</title>
 </head>
 
 
 <body>
 <!-- References a Handlebars partial in views/partials/bsnavbar.handlebars -->
-{{>bsnavbar.hbs}}
+{{>bsnavbar}}
  
 <!-- The HTML for each view goes here -->
 <div class="container">
  
 {{{body}}}
-<p id="dailyMessage">XXXX Title</p>
+<p id="dailyMessage">This is just the title</p>
 </div>
  
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>
-
