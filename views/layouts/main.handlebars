@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang= "en">
+<head>
+
+	{{>head}}
+	<title>MOH</title>
+</head>
+
+
+<body>
+<!-- References a Handlebars partial in views/partials/bsnavbar.handlebars -->
+{{>bsnavbar}}
+ 
+<!-- The HTML for each view goes here -->
+<div class="container">
+ 
+{{{body}}}
+<p id="dailyMessage">This is just the title</p>
+</div>
+ 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>
