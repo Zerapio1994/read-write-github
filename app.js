@@ -56,6 +56,17 @@ app.get('/instructions', function(req, res){
   res.render('instructions');
 });
 
+// Receive the contact form data and then redirect to
+// thankyou.handlebars
+// contact.handlebars calls process to process the form
+app.post('/process', function(req, res){
+  console.log('Form : ' + req.query.form);
+  console.log('CSRF token : ' + req.body._csrf);
+  console.log('Email : ' + req.body.email);
+  console.log('Question : ' + req.body.ques);
+  res.redirect(303, '/thankyou');
+});
+
 var github = new GitHubApi({
     // optional
     debug: true,
