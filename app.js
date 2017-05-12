@@ -12,8 +12,12 @@ var http = require('http')
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+//app.set('views', path.join(__dirname, 'views'));
+//app.set('view engine', 'hbs');
+
+var handlebars = require('express-handlebars').create({defaultLayout:'main'});
+app.engine('handlebars', handlebars.engine);
+app.set('view engine', 'handlebars');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
