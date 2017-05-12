@@ -1,0 +1,1 @@
+module.exports = { cookieSecret: 'This is my cookie ', };

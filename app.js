@@ -10,6 +10,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var http = require('http')
 var app = express();
+var formidable = require('formidable');
 
 // view engine setup
 //app.set('views', path.join(__dirname, 'views'));
@@ -23,7 +24,7 @@ app.set('view engine', 'handlebars');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -36,36 +37,8 @@ var content;
 var buffer;
 var stringToReplace;
 
-app.get('/about', function(req, res){
-  // Point at the about.handlebars view
-  // Allow for the test specified in tests-about.js
-  res.render('about');
-});
- 
-// Link to contact view
-app.get('/contact', function(req, res){
- 
-  // CSRF tokens are generated in cookie and form data and
-  // then they are verified when the user posts
-  res.render('contact', { csrf: 'CSRF token here' });
-});
 
-app.get('/instructions', function(req, res){
-  // Point at the about.handlebars view
-  // Allow for the test specified in tests-about.js
-  res.render('instructions');
-});
 
-// Receive the contact form data and then redirect to
-// thankyou.handlebars
-// contact.handlebars calls process to process the form
-app.post('/process', function(req, res){
-  console.log('Form : ' + req.query.form);
-  console.log('CSRF token : ' + req.body._csrf);
-  console.log('Email : ' + req.body.email);
-  console.log('Question : ' + req.body.ques);
-  res.redirect(303, '/thankyou');
-});
 
 var github = new GitHubApi({
     // optional
@@ -84,6 +57,33 @@ github.authenticate({
     username: github_account,
     password: github_password
 });
+
+var credentials = require('./credentials.js');
+app.use(require('cookie-parser')(credentials.cookieSecret));
+
+
+app.get('/about', function(req, res){
+  res.render('about');
+});
+
+
+app.get('/instructions', function(req, res){
+  res.render('instructions');
+});
+
+app.get('/contact', function(req, res){
+  res.render('contact', { csrf: 'CSRF token here' });
+});
+
+app.post('/process', function(req, res){
+  console.log('Form : ' + req.query.form);
+  console.log('CSRF token : ' + req.body._csrf);
+  console.log('Email : ' + req.body.email);
+  console.log('Question : ' + req.body.ques);
+  res.redirect(303, '/thankyou');
+});
+
+
 
 app.get('/',function(req, res, next){
 
