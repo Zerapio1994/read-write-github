@@ -1,1 +1,1 @@
-# read-write-github
+This program reads the app.html and allows to write to it. More features are there but not fully implemented
