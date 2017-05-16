@@ -28,9 +28,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-var github_account = 'Jos3Salermo';
-var github_password = 'Rouge1234';
-var github_repo = 'test';
+var github_account = 'Zerapio1994';
+var github_password = 'rouge123';
+var github_repo = 'read-write-github';
 var github_path = 'app.html';
 var sha;
 var content;
