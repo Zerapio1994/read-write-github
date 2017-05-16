@@ -6,9 +6,14 @@
 {{sha}}
 
 <form action="/submit" method="post" id="usrform">
-	<div class="input-group input-group-md">
-		<input type="text" name="message" placeholder="Daily Message">
-		<input type="text" name="commit" placeholder="Commit Message">
-		<button type="submit" class="btn">Submit</button>
+	<div class="form-group">
+		<input class="form-control" name="message" type="text" placeholder="Daily Message">
+	 	<!--<input type="text" name="message" placeholder="Daily Message">-->
+	 	<br>
+	 	<input class="form-control" name="commit" type="text" placeholder="Commit Message">
+		<!--<input type="text" name="commit" placeholder="Commit Message">-->
+		<br>
+		<button type="submit" class="btn btn-primary btn-lg">Submit</button>
+		
 	</div>
 </form>
