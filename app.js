@@ -130,7 +130,7 @@ app.get('/',function(req, res, next){
 		var regex = '<p id="dailyMessage">(.*?)</p>'
 		var found = buffer.match(regex)
 		stringToReplace  = found[1]
-		return res.render('index', {title: 'welcome', body: stringToReplace, sha: sha})
+		return res.render('index', {title: 'Application to read-write on GitHub', body: stringToReplace, sha: sha})
 	})
 })
 
@@ -167,6 +167,37 @@ app.post('/submit', function(req, res, next){
 		})
 	}
 })
+
+//formContactUs
+app.post('/formContactUs', function(req, res, next){
+  var email = req.body.email
+  var question = req.body.question
+  var date = new Date
+  date = date.toString()
+  if (email === "" || question === ""){
+    console.log("failure")
+    res.redirect('/?valid=false');
+  }else{
+    var result = buffer.replace(stringToReplace, email);
+    console.log(result)
+    // console.log(new Buffer(result).toString('base64'));
+    var newContent = new Buffer(result).toString('base64')
+    github.repos.updateFile({
+      owner: github_account,
+      repo: github_repo,
+      path: github_path,
+      message: date + ': ' + commit ,
+      content: newContent,
+      sha: sha
+    }, function(error, result){ 
+      console.log(result)
+      res.redirect('/?valid=true');
+
+    })
+  }
+})
+
+
 
 app.use('/', index);
 app.use('/users', users);

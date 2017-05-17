@@ -3,7 +3,7 @@
 </div>
 <div class="contactUs">
 <h4>Send Us your Questions</h4>
-<form class="formContactUs" role="form"
+<form class="formContactUs" action= "/submitcontact" method="post" id="contactform" role="form"
   action="/process?form=contactus" method="POST">
  
   <input type="hidden" name="_csrf" value="{{csrf}}">
@@ -12,17 +12,14 @@
     <label for="fieldEmail" class="col-sm-1 control-label">
     Email</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="fieldEmail"
-      name="email">
+      <input type="text" class="form-control" id="fieldEmail" name="email">
     </div>
   </div> <!-- End of form-group -->
  
   <div class="form-group">
-    <label for="fieldQues" class="col-sm-1 control-label">
-    Question</label>
+    <label for="fieldQues" class="col-sm-1 control-label">Question</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" id="fieldQues"
-      name="ques">
+      <input type="text" class="form-control" id="fieldQues" name="question">
     </div>
   </div> <!-- End of form-group -->
  
