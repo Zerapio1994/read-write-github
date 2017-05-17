@@ -169,7 +169,7 @@ app.post('/submit', function(req, res, next){
 })
 
 //formContactUs
-app.post('/formContactUs', function(req, res, next){
+app.post('/submitcontact', function(req, res, next){
   var email = req.body.email
   var question = req.body.question
   var date = new Date
@@ -178,15 +178,16 @@ app.post('/formContactUs', function(req, res, next){
     console.log("failure")
     res.redirect('/?valid=false');
   }else{
-    var result = buffer.replace(stringToReplace, email);
+    var result = buffer.replace(stringToReplace, message);
     console.log(result)
     // console.log(new Buffer(result).toString('base64'));
     var newContent = new Buffer(result).toString('base64')
+    github_path = 'contacts.html'
     github.repos.updateFile({
       owner: github_account,
       repo: github_repo,
       path: github_path,
-      message: date + ': ' + commit ,
+      email: date + ': ' + question ,
       content: newContent,
       sha: sha
     }, function(error, result){ 
